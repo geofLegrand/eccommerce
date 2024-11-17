@@ -1,0 +1,35 @@
+version: '3'
+services:
+  web_app:
+    container_name: web_app
+    build: .
+    ports:
+      - 8000:8000
+    command: sh -c "python manage.py makemigrations && 
+                    python manage.py migrate"
+    volumes:
+      - static_app:/app/templates
+    depends_on:
+      - db
+    networks:
+      - web
+  
+  db:
+    container_name: db_postgres
+    image: postgres:15.9-alpine3.19
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=ngandiko
+    volumes:
+      - db_postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - web
+
+volumes:
+  static_app:
+  db_postgres:
+networks:
+  web:
+    driver: bridge
