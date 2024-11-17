@@ -5,8 +5,8 @@ services:
     build: .
     ports:
       - 8000:8000
-    command: sh -c "python manage.py makemigrations && 
-                    python manage.py migrate"
+    # command: sh -c "python manage.py makemigrations && 
+    #                 python manage.py migrate"
     volumes:
       - static_app:/app/templates
     depends_on:
