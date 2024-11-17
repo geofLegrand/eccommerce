@@ -9,8 +9,8 @@ RUN  python -m venv /app/env \
     && . /app/env/bin/activate \
     && pip install --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt \
-    && python manage.py makemigrations \
-    && python manage.py migrate
+    && /app/env/bin/python manage.py makemigrations \
+    && /app/env/bin/python manage.py migrate
 
 COPY . .
 
