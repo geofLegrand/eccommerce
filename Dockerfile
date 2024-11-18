@@ -12,9 +12,9 @@ RUN  python -m venv /app/env \
 
 
 # Run migrations
-RUN /app/env/bin/python manage.py makemigrations \
-    && /app/env/bin/python manage.py migrate
+# RUN /app/env/bin/python manage.py makemigrations \
+#     && /app/env/bin/python manage.py migrate
 
 EXPOSE 8000
 
-CMD [ "/app/env/bin/python","manage.py","runserver","0.0.0.0:8000" ]
+# CMD [ "/app/env/bin/python","manage.py","runserver","0.0.0.0:8000" ]
