@@ -19,9 +19,9 @@ services:
     build: .
     ports:
       - 8000:8000
-    command: sh -c "/app/env/bin/python manage.py makemigrations && 
-                    /app/env/bin/python manage.py migrate && 
-                    /app/env/bin/python manage.py runserver 0.0.0.0:8000"
+    # command: sh -c "/app/env/bin/python manage.py makemigrations && 
+    #                 /app/env/bin/python manage.py migrate && 
+    #                 /app/env/bin/python manage.py runserver 0.0.0.0:8000"
     volumes:
       - static_app:/app/templates
     depends_on:

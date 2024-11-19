@@ -1,20 +1,33 @@
 FROM python:3.9.19-slim
 
+ENV PYTHONDONTWRITEBYTECODE 1
+# allow python to display the real logs output in terminal in real time
+ENV PYTHONUNBEFFERED 1  
+
 WORKDIR /app
 
 COPY . /app
 
-# create virtual environment into my container
-RUN  python -m venv /app/env \
-    && . /app/env/bin/activate \
-    && pip install --upgrade pip \
+RUN addgroup --system usrapp \
+    && adduser --system --ingroup usrapp usrapp
+
+COPY --chown=usrapp:usrapp entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY --chown=usrapp:usrapp launch.sh /usr/local/bin/launch.sh
+
+USER root
+
+RUN  pip install --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
-
-
-# Run migrations
-# RUN /app/env/bin/python manage.py makemigrations \
-#     && /app/env/bin/python manage.py migrate
 
 EXPOSE 8000
 
-# CMD [ "/app/env/bin/python","manage.py","runserver","0.0.0.0:8000" ]
+RUN chmod +x /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/launch.sh
+
+
+
+USER usrapp
+
+ENTRYPOINT [ "entrypoint.sh" ]
+
+CMD [ "launch.sh" ]
