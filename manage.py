@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 import os
 import sys
-import testdb as test
+#import testdb as test
 
 if __name__ == '__main__':
-    test.test_dbconnection()
+    #test.test_dbconnection()
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'demo.settings')
     try:
         from django.core.management import execute_from_command_line

@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
 # make sure the database server is running before trying to connect
 
-function db_is_ready() {
+function db_is_ready(){
 python << END
 import psycopg2
 import sys
