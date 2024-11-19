@@ -18,7 +18,7 @@ try:
     #print("Data base is still running....")
 except Exception as e:
     print(e)
-    sys.exit(1)
+    sys.exit(-1)
 
 sys.exit(0)
 END
